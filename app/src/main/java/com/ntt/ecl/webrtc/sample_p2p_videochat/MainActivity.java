@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
     private static final String TARGETS = "targets";
 
     private boolean isCamera = false;
+    private AudioManager am;
     private Camera mCamera = null;
     private int mCameraId;
     private Camera.Parameters mParameters;
@@ -108,7 +109,7 @@ public class MainActivity extends Activity {
     //
     // Set your APIkey and Domain
     //
-    private static final String API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    private static final String API_KEY = "xxxxxxxxxxxxxxxxxxxxxx";
     private static final String DOMAIN = "localhost";
 
     private Peer _peer;
@@ -319,6 +320,10 @@ public class MainActivity extends Activity {
     //
 
     void startLocalStream() {
+        if(am  == null){
+            am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            am.setParameters("RicUseBFormat=false");
+        }
         if (mCamera == null) {
             mCamera = Camera.open();
 
